@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import assignment from '../assignment.gif';
-
+import assignment from '../../assignment.gif';
 import { TsComponent } from './TsComponent.tsx';
 
 export class List extends PureComponent {
@@ -20,14 +19,7 @@ export class List extends PureComponent {
               Desired functionality is captured in the gif image.
             </p>
             <p className="lead text-center">
-              <b>
-                Note:
-              </b>
-              Try to make solution easily extensible (e.g. more displayed fields per item like
-              <code>
-                dateCreated
-              </code>
-              ).
+              <b>Note: </b>Try to make solution easily extensible (e.g. more displayed fields per item like <code>dateCreated</code>).
             </p>
             <img src={assignment} alt="assignment" className="img--assignment" />
           </div>
