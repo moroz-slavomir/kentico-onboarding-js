@@ -13,7 +13,8 @@
         }
       }
     ],
-    "react"
+    "react",
+    "stage-2"
   ],
   "env": {
     "test": {

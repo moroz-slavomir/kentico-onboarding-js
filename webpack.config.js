@@ -42,7 +42,7 @@ module.exports = {
   ],
   devtool: mode === 'development' ? 'eval-source-map' : null,
   devServer: {
-    contentBase: path.resolve(__dirname, '/build'),
+    contentBase: path.resolve(__dirname, './public'),
     port: 3000,
     open: true
   }

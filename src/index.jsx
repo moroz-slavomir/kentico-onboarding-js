@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-import { App } from './App';
+import { Chat } from './components/Chat';
 
-ReactDOM.render(<App />, document.getElementById('app-root'));
+ReactDOM.render(<Chat />, document.getElementById('app-root'));
