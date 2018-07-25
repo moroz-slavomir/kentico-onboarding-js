@@ -4,21 +4,31 @@ import { MessageList } from './MessageList';
 import { MessageForm } from './MessageForm';
 
 export class Chat extends BaseComponent {
-  constructor() {
-    super(); // Must be called to properly build the base object and initialize its prototype.
+  constructor(props) {
+    super(props); // Must be called to properly build the base object and initialize its prototype.
 
     /*
-     * Add and initialize new state properties in the style of:
-     * this.state.newProp = newValue;
+     * Add and initialize your state
+     * You'll need to track two input fields: nickname and message text.
      */
 
-    this.state.nickName = '';
-    this.state.messageText = '';
+    this.state = {
+      nickName: '',
+      messageText: ''
+    };
   }
 
   sendMessage = () => {
     this.postMessage(this.state.nickName, this.state.messageText);
     this.setState({ messageText: '' });
+  };
+
+  updateNick = (newNick) => {
+    this.setState({ nickName: newNick });
+  };
+
+  updateMessage = (newMessage) => {
+    this.setState({ messageText: newMessage });
   };
 
   render() {
@@ -40,9 +50,9 @@ export class Chat extends BaseComponent {
         <MessageForm
           onSend={this.sendMessage}
           nick={this.state.nickName}
-          onNickChange={(newNick) => this.setState({ nickName: newNick })}
+          onNickChange={this.updateNick}
           message={this.state.messageText}
-          onMessageChange={newMessage => this.setState({ messageText: newMessage })}
+          onMessageChange={this.updateMessage}
         />
       </div>
     );

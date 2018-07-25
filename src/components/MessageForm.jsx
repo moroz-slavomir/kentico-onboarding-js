@@ -13,6 +13,7 @@ export class MessageForm extends React.Component {
   onNickChange = (event) => {
     this.props.onNickChange(event.target.value);
   };
+
   onMessageChange = (event) => {
     this.props.onMessageChange(event.target.value);
   };
@@ -36,7 +37,7 @@ export class MessageForm extends React.Component {
         </label>
         <input
           className="message-form__nick-input"
-          name="nick"
+          id="nick"
           value={this.props.nick}
           onChange={this.onNickChange}
         />
@@ -47,7 +48,7 @@ export class MessageForm extends React.Component {
           Message:
         </label>
         <input
-          name="message"
+          id="message"
           className="message-form__message-input"
           value={this.props.message}
           onChange={this.onMessageChange}

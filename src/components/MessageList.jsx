@@ -7,13 +7,13 @@ export class MessageList extends React.Component {
       id: PropTypes.string.isRequired,
       from: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-    })).isRequired,
+    })),
   };
 
   render() {
     return (
       <div className="message-list">
-        {this.props.messages.map(message => (
+        {this.props.messages && this.props.messages.map(message => (
           <div className="message" key={message.id}>
             <div className="message__author">
               {message.from}
