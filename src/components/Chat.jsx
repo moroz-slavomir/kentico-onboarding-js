@@ -16,7 +16,7 @@ import { MessageList } from './MessageList';
 // @TODO: Import the MessageForm component here.
 import { MessageForm } from './Where is it?';
 
-export class Chat extends BaseComponent {
+export class Chat extends React.Component {
   constructor(props) {
     super(props); // Must be called to properly build the base object and initialize its prototype.
 
