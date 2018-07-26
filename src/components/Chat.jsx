@@ -1,5 +1,4 @@
 import React from 'react';
-import { BaseComponent } from './DemoChatComponentBase';
 import { MessageList } from './MessageList';
 
 /*
@@ -27,6 +26,37 @@ export class Chat extends BaseComponent {
      * You'll need to track two input fields: nickname and message text.
      */
   }
+
+  // <editor-fold desc="Message sending and getting — DO NOT TOUCH" defaultstate="collapsed">
+
+  uuidv4 = require('uuid/v4');
+  createGuid = () => {
+    return this.uuidv4();
+  };
+
+  messages = [];
+
+  getMessages = () => {
+    console.log('Getting messages!!!');
+    this.setState({
+      messages: this.messages,
+    });
+  };
+
+  postMessage = (nickName, message) => {
+    console.log(`Sending message from '${nickName}' saying '${message}'.`);
+    this.messages = [
+      ...this.messages, {
+        from: nickName,
+        text: message,
+        id: this.createGuid(),
+      }
+    ];
+  };
+
+  getMessagesInterval = setInterval(this.getMessages, 2000);
+
+  // </editor-fold>
 
   sendMessage = () => {
     // @TODO: Take nickname and message text from the state (wherever you store it) and pass it to the postMessage function
