@@ -29,18 +29,20 @@ export class Chat extends React.Component {
 
   // <editor-fold desc="Message sending and getting — DO NOT TOUCH" defaultstate="collapsed">
 
-  uuidv4 = require('uuid/v4');
-  createGuid = () => {
-    return this.uuidv4();
-  };
-
-  messages = [];
-
   getMessages = () => {
     console.log('Getting messages!!!');
     this.setState({
       messages: this.messages,
     });
+  };
+
+  getMessagesInterval = setInterval(this.getMessages, 2000);
+  // eslint-disable-next-line global-require
+  uuidv4 = require('uuid/v4');
+  messages = [];
+
+  createGuid = () => {
+    return this.uuidv4();
   };
 
   postMessage = (nickName, message) => {
@@ -53,8 +55,6 @@ export class Chat extends React.Component {
       }
     ];
   };
-
-  getMessagesInterval = setInterval(this.getMessages, 2000);
 
   // </editor-fold>
 
