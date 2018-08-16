@@ -8,30 +8,68 @@ const mode = process.env.NODE_ENV || 'development';
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, '/build'),
+    path: path.resolve(__dirname, './public'),
     filename: 'bundle.js'
   },
   module: {
     rules: [
-      { test: /\.(js|jsx)$/, exclude: /node_modules/, use: [
-        'babel-loader',
-        'eslint-loader'
-      ] },
-      { test: /\.(ts|tsx)$/, exclude: /node_modules/, use: [
-        'ts-loader',
-        { loader: 'tslint-loader', options: { configFile: 'tslint.json' } }
-      ] },
-      { test: /\.css$/, use: [
-        { loader: 'file-loader', options: { name: 'styles/[name].[ext]' } },
-        { loader: 'extract-loader', options: { publicPath: '../' } },
-        { loader: 'css-loader' }
-      ] },
-      { test: /\.(eot|svg|ttf|woff|woff2)/, use: [
-        { loader: 'url-loader', options: { name: 'assets/[name].[ext]', limit: 10000 } }
-      ] },
-      { test: /\.(html|jpg|jpeg|png|ico|gif)/, use: [
-        { loader: 'file-loader', options: { name: '[path][name].[ext]', context: 'public' } }
-      ] }
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+          'eslint-loader'
+        ]
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'ts-loader',
+          {
+            loader: 'tslint-loader',
+            options: { configFile: 'tslint.json' }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { name: 'styles/[name].[ext]' }
+          },
+          {
+            loader: 'extract-loader',
+            options: { publicPath: './public' }
+          },
+          { loader: 'css-loader' }
+        ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'assets/[name].[ext]',
+              limit: 10000
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(html|jpg|jpeg|png|ico|gif)/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              context: 'public'
+            }
+          }
+        ]
+      }
     ]
   },
   resolve: {
@@ -44,6 +82,6 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, './public'),
     port: 3000,
-    open: true
+    open: true,
   }
 };

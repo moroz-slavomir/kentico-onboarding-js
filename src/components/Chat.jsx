@@ -38,7 +38,10 @@ export class Chat extends React.Component {
     console.log('Getting messages!!!');
     const messages = await (await fetch(`${chatServerUrl}messages`)).json();
     this.setState({
-      messages,
+      messages: messages.map(message => ({
+        ...message,
+        from: message.nick,
+      })),
     });
   };
 
