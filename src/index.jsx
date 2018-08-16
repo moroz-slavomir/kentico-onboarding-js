@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import 'babel-core/register';
+import 'babel-polyfill';
 
 import { Chat } from './components/Chat';
 

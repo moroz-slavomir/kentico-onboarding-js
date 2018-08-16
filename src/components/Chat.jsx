@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageList } from './MessageList';
+import { chatServerUrl } from '../config';
 
 /*
  * @TODO: Create your own component MessageForm.
@@ -33,10 +34,11 @@ export class Chat extends React.Component {
 
   // <editor-fold desc="Message sending and getting — DO NOT TOUCH" defaultstate="collapsed">
 
-  getMessages = () => {
+  getMessages = async () => {
     console.log('Getting messages!!!');
+    const messages = await (await fetch(`${chatServerUrl}messages`)).json();
     this.setState({
-      messages: this.messages,
+      messages,
     });
   };
 
@@ -49,15 +51,19 @@ export class Chat extends React.Component {
     return this.uuidv4();
   };
 
-  postMessage = (nickName, message) => {
-    console.log(`Sending message from '${nickName}' saying '${message}'.`);
-    this.messages = [
-      ...this.messages, {
-        from: nickName,
-        text: message,
-        id: this.createGuid(),
-      }
-    ];
+  postMessage = (nick, text) => {
+    console.log(`Sending message from '${nick}' saying '${text}'.`);
+    fetch(`${chatServerUrl}message`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        text,
+        nick,
+      }),
+    });
   };
 
   // </editor-fold>
