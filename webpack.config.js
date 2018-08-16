@@ -8,7 +8,7 @@ const mode = process.env.NODE_ENV || 'development';
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, '/build'),
+    path: path.resolve(__dirname, './build'),
     filename: 'bundle.js'
   },
   module: {
@@ -25,6 +25,16 @@ module.exports = {
         { loader: 'file-loader', options: { name: 'styles/[name].[ext]' } },
         { loader: 'extract-loader', options: { publicPath: '../' } },
         { loader: 'css-loader' }
+      ],
+      include: [
+        path.resolve(__dirname, './node_modules')
+      ] },
+      { test: /\.css$/, use: [
+        { loader: "style-loader" },
+        { loader: "css-loader" }
+      ],
+      include: [
+        path.resolve(__dirname, './src')
       ] },
       { test: /\.(eot|svg|ttf|woff|woff2)/, use: [
         { loader: 'url-loader', options: { name: 'assets/[name].[ext]', limit: 10000 } }
@@ -42,7 +52,7 @@ module.exports = {
   ],
   devtool: mode === 'development' ? 'eval-source-map' : null,
   devServer: {
-    contentBase: path.resolve(__dirname, '/build'),
+    contentBase: path.resolve(__dirname, './build'),
     port: 3000,
     open: true
   }
