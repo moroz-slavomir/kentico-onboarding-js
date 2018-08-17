@@ -13,7 +13,9 @@
         }
       }
     ],
-    "react"
+    "react",
+    "es2015",
+    "stage-0"
   ],
   "env": {
     "test": {
